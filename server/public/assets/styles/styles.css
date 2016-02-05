@@ -1,0 +1,27 @@
+body {
+    background-image: url("../../images/IMG_5688.jpg");
+    background-size: 100%;
+}
+
+.jumbotron {
+    background-color: #92a013;
+    margin: 0;
+}
+
+.jumbotron h1 {
+    padding: 0 20px;
+}
+
+.login,.save {
+    float: right;
+    margin: 0 20px 0 0;
+
+}
+input {
+    background-color: #b3cd23;
+}
+
+.choose {
+    background-color: #b3cd23;
+    border: solid 1px #474747;
+}
