@@ -4,7 +4,7 @@ body {
 }
 
 .jumbotron {
-    background-color: #92a013;
+    background-color: rgba(146, 160, 19, 0.75);
     margin: 0;
 }
 
@@ -12,16 +12,22 @@ body {
     padding: 0 20px;
 }
 
-.login,.save {
+.login, .save, .choose {
     float: right;
     margin: 0 20px 0 0;
 
 }
 input {
-    background-color: #b3cd23;
+    background-color: rgba(179, 205, 35, 0.75);
 }
 
-.choose {
-    background-color: #b3cd23;
+.choose, .list, button  {
+    background-color: rgba(179, 205, 35, 0.75);
     border: solid 1px #474747;
 }
+
+.well {
+    background-color: rgba(179, 205, 35, 0.75);
+}
+
+

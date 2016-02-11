@@ -7,10 +7,30 @@
         <input type="password" ng-model="data.password" placeholder="PASSWORD">
         <label for="email">EMAIL:</label>
         <input type="email" ng-model="data.contact.email" ng-required="!(data.contact.email || data.contact.number)" placeholder="EMAIL">
+        <label for="mobile provider">MOBILE PROVIDER:</label>
+        <select ng-model="data.contact.mobileProvider">
+            <option value="@txt.att.net">AT&T</option>
+            <option value="@tmomail.net">T-MOBILE</option>
+            <option value="@vtext.com">VERIZON</option>
+            <option value="@pm.sprint.com">SPRINT</option>
+            <option value="@vmobl.com">VIRGIN MOBILE</option>
+            <option value="@mmst5.tracfone.com">TRACFONE</option>
+            <option value="@mymetropcs.com">METRO PCS</option>
+            <option value="@myboostmobile.com">BOOST MOBILE</option>
+            <option value="@sms.mycricket.com">CRICKET</option>
+            <option value="@messaging.nextel.com">NEXTEL</option>
+            <option value="@message.alltel.com">ALLTEL</option>
+            <option value="@ptel.com">PTEL</option>
+            <option value="@tms.suncom.com">SUNCOM</option>
+            <option value="@qwestmp.com">QWEST</option>
+            <option value="@email.uscc.net">U.S. CELLULAR</option>
+        </select>
         <label for="phone number">PHONE NUMBER:</label>
         <input type="tel" ng-model="data.contact.phoneNumber" ng-required="!(data.contact.email || data.contact.number)" placeholder="PHONE NUMBER">
-        <label for="mobile provider">MOBILE PROVIDER:</label>
-        <input type="text" ng-model="data.contact.mobileProvider" placeholder="MOBILE PROVIDER">
+        <!--label for="mobile provider">MOBILE PROVIDER:</label-->
+        <!--input type="text" ng-model="data.contact.mobileProvider" placeholder="MOBILE PROVIDER"-->
         <button ng-click="submitContact()">SUBMIT</button>
     </div>
 </div>
+
+

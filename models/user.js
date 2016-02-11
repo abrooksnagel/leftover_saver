@@ -1,6 +1,9 @@
 var mongoose = require('mongoose');
 
+
 var Schema = mongoose.Schema;
+var Leftover = require('./leftovers').schema;
+
 
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
@@ -13,10 +16,8 @@ var UserSchema = new Schema({
             phoneNumber: {type: Number},
             mobileProvider: {type: String},
             email: {type: String}},
-        leftovers: [{
-            foodItem: {type: String},
-            entryDate: {type: Date, default: Date.now}}]
-        });
+        leftovers: [Leftover]
+        }, {minimize: false});
 
 UserSchema.pre('save', function(next) {
     var user = this;
