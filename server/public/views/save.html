@@ -6,6 +6,6 @@
     <label for="foodItem">FOOD ITEM:</label>
     <input type="text" ng-model="data.leftover.foodItem" placeholder="FOOD ITEM">
     <label for="entryDate">PREPARED DATE (LEAVE BLANK TO DEFAULT TO NOW)</label>
-    <input type="date" ng-model="data.leftover.entryDate">
+    <input type="datetime-local" ng-model="data.leftover.entryDate" placeholder="MM-DD-YYYY HH:MM">
     <button ng-click="saveLeftover()">SUBMIT</button>
 </div>

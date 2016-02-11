@@ -21,6 +21,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         .when('/save', {
             templateUrl: 'views/save.html',
             controller: 'SaveController'
+        })
+        .when('/show', {
+            templateUrl: 'views/show.html',
+            controller: 'ShowController'
         });
 
 
@@ -32,7 +36,9 @@ app.controller('LoginController', ['$scope', '$http', '$location', function($sco
         $http.post('/login', $scope.data).then(function(response){
             console.log(response);
            // $location.path(response.data);//
-            $location.path('/choose');
+            if (response.data == "success") {
+                $location.path('/choose');
+            }
         });
     };
 }]);
@@ -56,11 +62,44 @@ app.controller('SaveController', ['$scope', '$http', '$location', function($scop
     $scope.saveLeftover = function() {
         $http.post('/save', $scope.data).then(function(response) {
             console.log(response);
-            $location.path('/login');
+            $location.path('/choose');
         });
     };
 
 }]);
+
+app.controller('ShowController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
+    function showLeftovers() {
+        $http.get('/show').then(function(response) {
+            console.log(response.data);
+            $scope.leftovers = response.data;
+            $scope.foodItem = response.data.foodItem;
+            $scope.entryDate = response.data.entryDate;
+            $location.path('/show');
+
+        });
+    };
+    showLeftovers();
+}]);
+
+app.controller('ContactController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
+    function showLeftovers() {
+        $http.get('/contact').then(function(response) {
+            console.log(response);
+            //$scope.leftovers = response.data;
+            //$scope.foodItem = response.data.foodItem;
+            //$scope.entryDate = response.data.entryDate;
+            //$location.path('/show');
+
+        });
+    };
+    showLeftovers();
+}]);
+
+
+
 
 //app.factory('CurrentUserService', ['$scope', function($scope) {
 //    var user = $scope.data.username;

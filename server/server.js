@@ -7,12 +7,16 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
+var nodemailer = require('nodemailer');
+
 
 var localStrategy = require('passport-local').Strategy;
 
 //This requires the index router
 var index = require('./routes/index');
 var User = require('../models/user');
+var Leftover = require('../models/leftovers');
+//var contactUser = require('./routes/index');  Do i need this?????????
 
 //This creates an express app
 var app = express();
@@ -37,6 +41,8 @@ app.use(passport.session());
 //This is telling server to use index router
 app.use(express.static('server/public'));
 app.use('/', index);
+app.use('/contact', index);
+
 
 
 //This creates and connects to my database
@@ -94,9 +100,70 @@ passport.use('local', new localStrategy({
         })
 }));
 
+//)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
+// This will text or email users that 60 hours have passed \\
+//)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
+var transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'leftoversaver@gmail.com',
+        pass: 'leftover'
+    }
+});
+
+var sendMessage = function() {
+    transporter.sendMail({
+        from: 'leftoversaver@gmail.com',
+        to: userContact,
+        subject: 'Eat those leftovers',
+        text: 'Finish the leftovers! - final test of the night'
+    });
+    console.log('Message sent', userContact);
+};
+
+//)))))))))))))))))))))))))
+//This will run the contact() function every six hours
+//)))))))))))))))))))))))))
+
+var testInt = setInterval(contact, 10 * 1000);
+//function log() {
+//    console.log('testing the set interval');
+//};
+
+var userContact;
+function contact() {
+    //"contact.email": "test@test.com"//
+    //User.find({"contact.email": "test@test.com"}, function (err, user) {
+
+    User.find({leftovers : {$elemMatch: {entryDate : {$gte: '02-01-2016'}}}}, function (err, user) {
+    //User.find({"leftovers.entryDate" : { $gte: '02-01-2016' }}, function (err, user) {
+        if (err) {
+            console.log('error returning contact items', err);
+        } else {
+            //response.send(user);
+            console.log('showing items for contact', user[0].contact);
+        }
+        userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
+    });
+    var slowDownMessage = setInterval(sendMessage, 1000); //this isn't doing what I want it to do right now
+
+
+    //Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
+    //    if(err) {
+    //        console.log('Error returning contact leftovers', err);
+    //    } else {
+    //        //response.send(user);
+    //
+    //        console.log('showing items for contact', user);
+    //        console.log('testing the interval');
+    //    }
+    //});
+};
+
 
 //This creates my server
 var server = app.listen(3000, function() {
     var port = server.address().port;
     console.log("Listening on port", port);
 });
+
