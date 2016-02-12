@@ -12,7 +12,7 @@ var nodemailer = require('nodemailer');
 
 var localStrategy = require('passport-local').Strategy;
 
-//This requires the index router
+//This requires the index router and mongoose models\\
 var index = require('./routes/index');
 var User = require('../models/user');
 var Leftover = require('../models/leftovers');
@@ -41,16 +41,18 @@ app.use(passport.session());
 //This is telling server to use index router
 app.use(express.static('server/public'));
 app.use('/', index);
-app.use('/contact', index);
+//app.use('/contact', index); Do I need this????
 
 
 
-//This creates and connects to my database
+    //))))))))))))))))))((((((((((((((((((\\
+    //           Using mongoose           \\
+    //))))))))))))))))))((((((((((((((((((\\
 var mongoURI = 'mongodb://localhost:27017/leftover_saver';
 var mongoDB = mongoose.connect(mongoURI).connection;
 
 
-//These log whether there is an error or a connection
+
 mongoDB.on('error', function(err) {
     console.log('MongoDB error:', err);
 });
@@ -59,6 +61,9 @@ mongoDB.on('open', function() {
     console.log('MongoDB connected');
 });
 
+    //)))))))))))))))))((((((((((((((((((\\
+    //         Using passport            \\
+    //))))))))))))))))))(((((((((((((((((\\
 passport.serializeUser(function(user, done) {
     console.log("Serialize ran");
     console.log(user._id);
@@ -100,9 +105,10 @@ passport.use('local', new localStrategy({
         })
 }));
 
-//)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
-// This will text or email users that 60 hours have passed \\
-//)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
+    //)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
+    //                  Using nodemailer                       \\
+    // This will text or email users that 60 hours have passed \\
+    //)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
@@ -121,19 +127,25 @@ var sendMessage = function() {
     console.log('Message sent', userContact);
 };
 
-//)))))))))))))))))))))))))
-//This will run the contact() function every six hours
-//)))))))))))))))))))))))))
 
-var testInt = setInterval(contact, 10 * 1000);
-//function log() {
-//    console.log('testing the set interval');
-//};
+    //)))))))))))))))))))))))))(((((((((((((((((((((((((((\\
+    //This will run the findUser() function every six hours\\
+    //))))))))))))))))))))))))))((((((((((((((((((((((((((\\
+var testInt = setInterval(findUser, 10 * 1000);
 
+
+
+    //))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
+    //Attempting to find user information from the database\\
+    //)))))))))))))))))))))))))((((((((((((((((((((((((((((\\
 var userContact;
-function contact() {
-    //"contact.email": "test@test.com"//
-    //User.find({"contact.email": "test@test.com"}, function (err, user) {
+function findUser() {
+        //)))))))))))))))))))))))))))))))))))))((((((((((((((((((((((((((((\\
+       // These are some alternative search parameters I used for testing   \\
+      //           "contact.email": "test@test.com"                          \\
+     //User.find({"contact.email": "test@test.com"}, function (err, user) {   \\
+    //)))))))))))))))))))))))))))((((((((((((((((((((((((((((((((((((((((((((((\\
+
 
     User.find({leftovers : {$elemMatch: {entryDate : {$gte: '02-01-2016'}}}}, function (err, user) {
     //User.find({"leftovers.entryDate" : { $gte: '02-01-2016' }}, function (err, user) {
@@ -145,23 +157,27 @@ function contact() {
         }
         userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
     });
-    var slowDownMessage = setInterval(sendMessage, 1000); //this isn't doing what I want it to do right now
+    var slowDownMessage = setTimeout(sendMessage, 1000);
 
 
-    //Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
-    //    if(err) {
-    //        console.log('Error returning contact leftovers', err);
-    //    } else {
-    //        //response.send(user);
-    //
-    //        console.log('showing items for contact', user);
-    //        console.log('testing the interval');
-    //    }
-    //});
+    //))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
+    //  Another attempt at find user information in the database  \\
+    //))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
+        //Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
+        //    if(err) {
+        //        console.log('Error returning contact leftovers', err);
+        //    } else {
+        //        //response.send(user);
+        //
+        //        console.log('showing items for contact', user);
+        //        console.log('testing the interval');
+        //    }
+        //});
 };
 
-
-//This creates my server
+    //)))))))))))(((((((((((\\
+    //This creates my server\\
+    //)))))))))))(((((((((((\\
 var server = app.listen(3000, function() {
     var port = server.address().port;
     console.log("Listening on port", port);

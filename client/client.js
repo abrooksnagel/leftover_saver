@@ -27,11 +27,12 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: 'ShowController'
         });
 
-
     $locationProvider.html5Mode(true);
+
 }]);
 
 app.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
     $scope.logIn = function() {
         $http.post('/login', $scope.data).then(function(response){
             console.log(response);
@@ -83,20 +84,20 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
     showLeftovers();
 }]);
 
-app.controller('ContactController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
-    function showLeftovers() {
-        $http.get('/contact').then(function(response) {
-            console.log(response);
-            //$scope.leftovers = response.data;
-            //$scope.foodItem = response.data.foodItem;
-            //$scope.entryDate = response.data.entryDate;
-            //$location.path('/show');
-
-        });
-    };
-    showLeftovers();
-}]);
+//app.controller('ContactController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+//
+//    function showLeftovers() {
+//        $http.get('/contact').then(function(response) {
+//            console.log(response);
+//            //$scope.leftovers = response.data;
+//            //$scope.foodItem = response.data.foodItem;
+//            //$scope.entryDate = response.data.entryDate;
+//            //$location.path('/show');
+//
+//        });
+//    };
+//    showLeftovers();
+//}]);
 
 
 
