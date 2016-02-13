@@ -94,36 +94,39 @@ router.get('/show', function(request, response) {
     });
 });
 
-router.delete('/delete', function(request, response) {
-    console.log(request.body);
-    Leftover.findById(request.leftovers.id, function(err, leftover) {
-        if(err) {
-            console.log('Error deleting leftover', err);
-        } else {
-            response.sendStatus(200);
+  //))))))))))))))))))))))))))))))))))!((((((((((((((((((((((((((((((((((\\
+ //this will search my database for leftovers between 54 and 60 hours old \\
+//)))))))))))))))))))))))))))))))))))!(((((((((((((((((((((((((((((((((((((\\
 
-            Leftover.delete(request.body.leftover, function(err, leftover){
-                console.log('Error saving leftover', err);
+//router.get('/contact', function(request, response) {
+//    var contact = function() {
+//        //"contact.email": "test@test.com"//
+//        //User.find({"contact.email": "test@test.com"}, function (err, user) {
+//
+//        //User.find({leftovers : {$elemMatch: {entryDate : {$gte: '02-01-2016'}}}}, function (err, user) {
+//        ////User.find({"leftovers.entryDate" : { $gte: '02-01-2016' }}, function (err, user) {
+//        //    if (err) {
+//        //        console.log('error returning contact items', err);
+//        //    } else {
+//        //        response.send(user);
+//        //        console.log('showing items for contact', user);
+//        //    }
+//        //});
+//        Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
+//            if(err) {
+//                console.log('Error returning contact leftovers', err);
+//            } else {
+//                 //response.send(user);
+//
+//                console.log('showing items for contact', user);
+//                console.log('testing the interval');
+//            }
+//        });
+//    };
+//    //contact();
+//});
 
 
-                //Associate with user
-                user.leftovers.push(leftover);
-
-                //Save user (now with leftover)
-                user.save(function(err){
-                    if(err){
-                        console.log('error saving user', err);
-                        response.sendStatus(500);
-                    }
-                });
-
-                response.sendStatus(200);
-
-            });
-        }
-    });
-
-});
 
 
 
