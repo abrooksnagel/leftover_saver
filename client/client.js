@@ -73,17 +73,27 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
 
     function showLeftovers() {
         $http.get('/show').then(function(response) {
-            console.log(response.data);
+            console.log('in show controller', response.data);
             $scope.leftovers = response.data;
             $scope.foodItem = response.data.foodItem;
             $scope.entryDate = response.data.entryDate;
             $location.path('/show');
 
         });
-    };
+    }
     showLeftovers();
 }]);
 
+
+app.controller('DeleteController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
+    $scope.toDelete = function() {
+        $http.delete('/delete', $scope.data).then(function(response) {
+            console.log('in delete controller', response);
+        });
+    };
+
+}]);
 //app.controller('ContactController', ['$scope', '$http', '$location', function($scope, $http, $location) {
 //
 //    function showLeftovers() {
