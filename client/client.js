@@ -36,7 +36,7 @@ app.controller('LoginController', ['$scope', '$http', '$location', function($sco
     $scope.logIn = function() {
         $http.post('/login', $scope.data).then(function(response){
             console.log(response);
-           // $location.path(response.data);//
+            // $location.path(response.data);//
             if (response.data == "success") {
                 $location.path('/choose');
             }
@@ -73,15 +73,28 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
 
     function showLeftovers() {
         $http.get('/show').then(function(response) {
-            console.log(response.data);
+            console.log('in show controller', response.data);
+
             $scope.leftovers = response.data;
             $scope.foodItem = response.data.foodItem;
             $scope.entryDate = response.data.entryDate;
             $location.path('/show');
 
         });
-    };
+
+    }
     showLeftovers();
+}]);
+
+
+app.controller('DeleteController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+
+    $scope.toDelete = function() {
+        $http.delete('/delete', $scope.data).then(function(response) {
+            console.log('in delete controller', response);
+        });
+    };
+
 }]);
 
 //app.controller('ContactController', ['$scope', '$http', '$location', function($scope, $http, $location) {
@@ -106,4 +119,3 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
 //    var user = $scope.data.username;
 //
 //    console.log("in the factory", user);
-//}]);

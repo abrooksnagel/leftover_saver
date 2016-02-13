@@ -94,8 +94,40 @@ router.get('/show', function(request, response) {
     });
 });
 
-  //))))))))))))))))))))))))))))))))))!((((((((((((((((((((((((((((((((((\\
- //this will search my database for leftovers between 54 and 60 hours old \\
+
+router.delete('/delete', function(request, response) {
+    console.log(request.body);
+    Leftover.findById(request.leftovers.id, function(err, leftover) {
+        if(err) {
+            console.log('Error deleting leftover', err);
+        } else {
+            response.sendStatus(200);
+
+            Leftover.delete(request.body.leftover, function(err, leftover){
+                console.log('Error saving leftover', err);
+
+
+                //Associate with user
+                user.leftovers.push(leftover);
+
+                //Save user (now with leftover)
+                user.save(function(err){
+                    if(err){
+                        console.log('error saving user', err);
+                        response.sendStatus(500);
+                    }
+                });
+
+                response.sendStatus(200);
+
+            });
+        }
+    });
+
+});
+
+//))))))))))))))))))))))))))))))))))!((((((((((((((((((((((((((((((((((\\
+//this will search my database for leftovers between 54 and 60 hours old \\
 //)))))))))))))))))))))))))))))))))))!(((((((((((((((((((((((((((((((((((((\\
 
 //router.get('/contact', function(request, response) {
@@ -135,4 +167,6 @@ router.get('/show', function(request, response) {
 
 
 //This exports this router to be used by server.js
-module.exports = router;
+module.exports = router;/**
+ * Created by abrooksnagel on 2/13/16.
+ */
