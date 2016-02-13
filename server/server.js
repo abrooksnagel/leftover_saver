@@ -1,9 +1,6 @@
 /**
  * Created by abrooksnagel on 2/2/16.
  */
-/**
- * Created by abrooksnagel on 2/2/16.
- */
 //These bring in my required libraries
 var express = require('express');
 var mongoose = require('mongoose');
@@ -48,9 +45,9 @@ app.use('/', index);
 
 
 
-//))))))))))))))))))((((((((((((((((((\\
-//           Using mongoose           \\
-//))))))))))))))))))((((((((((((((((((\\
+    //))))))))))))))))))((((((((((((((((((\\
+    //           Using mongoose           \\
+    //))))))))))))))))))((((((((((((((((((\\
 var mongoURI = 'mongodb://localhost:27017/leftover_saver';
 var mongoDB = mongoose.connect(mongoURI).connection;
 
@@ -64,9 +61,9 @@ mongoDB.on('open', function() {
     console.log('MongoDB connected');
 });
 
-//)))))))))))))))))((((((((((((((((((\\
-//         Using passport            \\
-//))))))))))))))))))(((((((((((((((((\\
+    //)))))))))))))))))((((((((((((((((((\\
+    //         Using passport            \\
+    //))))))))))))))))))(((((((((((((((((\\
 passport.serializeUser(function(user, done) {
     console.log("Serialize ran");
     console.log(user._id);
@@ -109,9 +106,9 @@ passport.use('local', new localStrategy({
     }));
 
 
-//))))))))))))))))))))))(((((((((((((((((((((\\
-//     This sets up my nodemailer            \\
-//))))))))))))))))))))))(((((((((((((((((((((\\
+    //))))))))))))))))))))))(((((((((((((((((((((\\
+    //     This sets up my nodemailer            \\
+    //))))))))))))))))))))))(((((((((((((((((((((\\
 
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -125,16 +122,16 @@ var transporter = nodemailer.createTransport({
 //Moved the sendMessage function from here to inside the find
 
 
-//))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-//This will run the findUser() function every six hours\\
-//))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-var testInt = setInterval(findUser, 3 * 60 * 60 * 1000);
+    //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
+    //This will run the findUser() function every six hours\\
+    //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
+var testInt = setInterval(findUser, 6 * 60 * 60 * 1000);
 
 
 
-//))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
-//Attempting to find user information from the database\\
-//)))))))))))))))))))))))))((((((((((((((((((((((((((((\\
+    //))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
+    //Attempting to find user information from the database\\
+    //)))))))))))))))))))))))))((((((((((((((((((((((((((((\\
 var userContact;
 var userLeftover;
 var userDateSaved;
@@ -144,21 +141,27 @@ function findUser() {
     //)))))))))))))))))))))))))))))))))))))((((((((((((((((((((((((((((\\
     // These are some alternative search parameters I used for testing   \\
     //           "contact.email": "test@test.com"                          \\
-
     // User.find({"contact.email": "test@test.com"}, function (err, user) {  \\
     //)))))))))))))))))))))))))))((((((((((((((((((((((((((((((((((((((((((((((\\
 
 
-    User.find({leftovers : {$elemMatch: {entryDate : {$gte: '02-01-2016'}}}}, function (err, user) {
+    //))))))))))))))))))))))))))(((((((((((((((((((((((\\
+    //         creating search parameters              \\
+    //)))))))))))))))))))))))((((((((((((((((((((((((((\\
+    var startSearch = new Date(Date.now()- 60 * 60 * 60 * 1000);
+    var endSearch = new Date(Date.now() - 54 * 60 * 60 * 1000);
+    console.log(startSearch);
+    console.log(endSearch);
+
+    User.find({leftovers : {$elemMatch: {entryDate : { $gte: startSearch, $lt: endSearch }}}}, function (err, user) {
         //User.find({"leftovers.entryDate" : { $gte: '02-01-2016' }}, function (err, user) {
         if (err) {
             console.log('error returning contact items', err);
         } else {
             //response.send(user);
-            console.log('showing items for contact', user[0].contact);
+            console.log('showing items for contact', user);
         }
         userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
-
         userLeftover = user[0].leftovers[0].foodItem;
         var options = { weekday: "long", year: "numeric", month: "short",
             day: "numeric" };
@@ -166,32 +169,32 @@ function findUser() {
         console.log('inside findUsers function', userDateSaved);
     });
 
-    var slowDownMessage = setTimeout(sendMessage, 1000);
+    var slowDownMessage = setTimeout(sendMessage, 10 * 1000);
 
 };
 
 
-//))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
-//  Another attempt at find user information in the database  \\
-//))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
-//Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
-//    if(err) {
-//        console.log('Error returning contact leftovers', err);
-//    } else {
-//        //response.send(user);
-//
-//        console.log('showing items for contact', user);
-//        console.log('testing the interval');
-//    }
-//});
+    //))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
+    //  Another attempt at find user information in the database  \\
+    //))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
+        //Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
+        //    if(err) {
+        //        console.log('Error returning contact leftovers', err);
+        //    } else {
+        //        //response.send(user);
+        //
+        //        console.log('showing items for contact', user);
+        //        console.log('testing the interval');
+        //    }
+        //});
 
 
 
 
-//)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
-//                  Using nodemailer                       \\
-// This will text or email users that 60 hours have passed \\
-//)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
+    //)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
+    //                  Using nodemailer                       \\
+    // This will text or email users that 60 hours have passed \\
+    //)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
 var sendMessage = function() {
     transporter.sendMail({
         from: 'leftoversaver@gmail.com',
@@ -205,9 +208,9 @@ var sendMessage = function() {
 
 
 
-//)))))))))))(((((((((((\\
-//This creates my server\\
-//)))))))))))(((((((((((\\
+    //)))))))))))(((((((((((\\
+    //This creates my server\\
+    //)))))))))))(((((((((((\\
 var server = app.listen(3000, function() {
     var port = server.address().port;
     console.log("Listening on port", port);
