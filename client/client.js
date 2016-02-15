@@ -25,6 +25,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
         .when('/show', {
             templateUrl: 'views/show.html',
             controller: 'ShowController'
+        })
+        .when('/delete', {
+
+            controller: 'DeleteController'
         });
 
     $locationProvider.html5Mode(true);
@@ -35,6 +39,7 @@ app.controller('LoginController', ['$scope', '$http', '$location', function($sco
 
     $scope.logIn = function() {
         $http.post('/login', $scope.data).then(function(response){
+            console.log('in login controller', $scope.data);
             console.log(response);
             // $location.path(response.data);//
             if (response.data == "success") {
@@ -84,16 +89,29 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
 
     }
     showLeftovers();
+
+
+    $scope.toDelete = function(leftover) {
+        console.log("testing delete function", leftover);
+        $http.delete('/delete', $scope.data).then(function(response) {
+
+        });
+    };
+
 }]);
 
 
 app.controller('DeleteController', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
     $scope.toDelete = function() {
-        $http.delete('/delete', $scope.data).then(function(response) {
-            console.log('in delete controller', response);
-        });
+        console.log("testing the delete function");
     };
+    //$scope.toDelete = function() {
+    //    $http.delete('/delete', $scope.data).then(function(response) {
+    //        console.log($scope.data);
+    //        console.log('in delete controller', response);
+    //    });
+    //};
 
 }]);
 
@@ -101,11 +119,11 @@ app.controller('DeleteController', ['$scope', '$http', '$location', function($sc
 //
 //    function showLeftovers() {
 //        $http.get('/contact').then(function(response) {
-//            console.log(response);
-//            //$scope.leftovers = response.data;
-//            //$scope.foodItem = response.data.foodItem;
-//            //$scope.entryDate = response.data.entryDate;
-//            //$location.path('/show');
+//            console.log("in contact controller", response);
+//            $scope.leftovers = response.data;
+//            $scope.foodItem = response.data.foodItem;
+//            $scope.entryDate = response.data.entryDate;
+//            $location.path('/show');
 //
 //        });
 //    };

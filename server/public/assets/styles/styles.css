@@ -3,13 +3,37 @@ body {
     background-size: 100%;
 }
 
+
 .jumbotron {
     background-color: rgba(146, 160, 19, 0.75);
     margin: 0;
 }
 
-.jumbotron h1 {
+.rotate {
+    transform: rotate(-15deg);
+    float: right;
+    margin-right: 48.5vw;
+}
+
+
+.logo h1 {
     padding: 0 20px;
+    font-family: "Exo 2";
+    font-weight: 800;
+    display: inline;
+    /*font-size: 96px;*/
+    font-size: 7vw;
+}
+
+
+.logo h2 {
+    position: relative;
+    font-family: "Pacifico";
+    display: inline;
+    font-size: 4.3vw;
+
+
+
 }
 
 .login, .save, .choose {
@@ -17,17 +41,40 @@ body {
     margin: 0 20px 0 0;
 
 }
+
+
 input {
     background-color: rgba(179, 205, 35, 0.75);
 }
 
-.choose, .list, button  {
+
+.list, button  {
     background-color: rgba(179, 205, 35, 0.75);
     border: solid 1px #474747;
 }
 
+
 .well {
     background-color: rgba(179, 205, 35, 0.75);
+    border: solid 1px #474747;
 }
 
 
+.delete {
+    float: right;
+}
+
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */

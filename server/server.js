@@ -125,7 +125,7 @@ var transporter = nodemailer.createTransport({
     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
     //This will run the findUser() function every six hours\\
     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-var testInt = setInterval(findUser, 6 * 60 * 60 * 1000);
+var testInt = setInterval(findUser, 60 * 1000);
 
 
 
@@ -148,7 +148,7 @@ function findUser() {
     //))))))))))))))))))))))))))(((((((((((((((((((((((\\
     //         creating search parameters              \\
     //)))))))))))))))))))))))((((((((((((((((((((((((((\\
-    var startSearch = new Date(Date.now()- 60 * 60 * 60 * 1000);
+    var startSearch = new Date(Date.now() - 60 * 60 * 60 * 1000);
     var endSearch = new Date(Date.now() - 54 * 60 * 60 * 1000);
     console.log(startSearch);
     console.log(endSearch);
@@ -159,7 +159,7 @@ function findUser() {
             console.log('error returning contact items', err);
         } else {
             //response.send(user);
-            console.log('showing items for contact', user);
+            console.log('showing items for contact', user[0].contact);
         }
         userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
         userLeftover = user[0].leftovers[0].foodItem;
@@ -169,7 +169,7 @@ function findUser() {
         console.log('inside findUsers function', userDateSaved);
     });
 
-    var slowDownMessage = setTimeout(sendMessage, 10 * 1000);
+    var slowDownMessage = setTimeout(sendMessage, 1000);
 
 };
 

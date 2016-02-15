@@ -45,7 +45,7 @@ router.post('/register', function(request, response){
 });
 
 router.post('/save', function(request, response) {
-    console.log(request.body);
+    console.log("in save router", request.body);
 
     //Find user that was requested
     User.findById(request.user.id, function(err, user){
@@ -95,36 +95,37 @@ router.get('/show', function(request, response) {
 });
 
 
-router.delete('/delete', function(request, response) {
-    console.log(request.body);
-    Leftover.findById(request.leftovers.id, function(err, leftover) {
-        if(err) {
-            console.log('Error deleting leftover', err);
-        } else {
-            response.sendStatus(200);
-
-            Leftover.delete(request.body.leftover, function(err, leftover){
-                console.log('Error saving leftover', err);
-
-
-                //Associate with user
-                user.leftovers.push(leftover);
-
-                //Save user (now with leftover)
-                user.save(function(err){
-                    if(err){
-                        console.log('error saving user', err);
-                        response.sendStatus(500);
-                    }
-                });
-
-                response.sendStatus(200);
-
-            });
-        }
-    });
-
-});
+//router.delete('/delete', function(request, response) {
+//    console.log("in delete router", request);
+//
+//    Leftover.findById(request.leftovers.id, function(err, leftover) {
+//        if(err) {
+//            console.log('Error deleting leftover', err);
+//        } else {
+//            response.sendStatus(200);
+//
+//            Leftover.delete(request.body.leftover, function(err, leftover){
+//                console.log('Error saving leftover', err);
+//
+//
+//                //Associate with user
+//                user.leftovers.push(leftover);
+//
+//                //Save user (now with leftover)
+//                user.save(function(err){
+//                    if(err){
+//                        console.log('error saving user', err);
+//                        response.sendStatus(500);
+//                    }
+//                });
+//
+//                response.sendStatus(200);
+//
+//            });
+//        }
+//    });
+//
+//});
 
 //))))))))))))))))))))))))))))))))))!((((((((((((((((((((((((((((((((((\\
 //this will search my database for leftovers between 54 and 60 hours old \\
