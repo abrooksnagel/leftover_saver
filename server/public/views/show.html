@@ -3,11 +3,11 @@
         <h1>LEFTOVER</h1>
         <h2 class="rotate">Saver!</h2>
     </div>
-
+</div>
 <div class="well clearfix" ng-repeat="leftover in leftovers">
 
             {{leftover.foodItem}} ~ saved on {{leftover.entryDate | date: 'EEEE, MMMM d, y hh:mm a'}}
             <button class="delete pull-right" ng-click="toDelete(leftover)">DELETE</button>
 
-</div>
+
 </div>

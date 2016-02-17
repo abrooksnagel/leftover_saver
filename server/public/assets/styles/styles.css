@@ -9,6 +9,7 @@ body {
     margin: 0;
 }
 
+
 .rotate {
     transform: rotate(-15deg);
     float: right;
@@ -17,7 +18,7 @@ body {
 
 
 .logo h1 {
-    padding: 0 20px;
+    padding: 0 0 0 20px;
     font-family: "Exo 2";
     font-weight: 800;
     display: inline;
