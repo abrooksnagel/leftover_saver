@@ -27,21 +27,15 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             controller: 'ShowController'
         })
         .when('/delete', {
-
             controller: 'DeleteController'
         });
-
     $locationProvider.html5Mode(true);
-
 }]);
 
 app.controller('LoginController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
     $scope.logIn = function() {
         $http.post('/login', $scope.data).then(function(response){
-            console.log('in login controller', $scope.data);
             console.log(response);
-            // $location.path(response.data);//
             if (response.data == "success") {
                 $location.path('/choose');
             }
@@ -50,7 +44,6 @@ app.controller('LoginController', ['$scope', '$http', '$location', function($sco
 }]);
 
 app.controller('RegisterController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-    //$scope.data = {};//
     $scope.submitContact = function() {
         $http.post('/register', $scope.data).then(function(response){
             console.log(response);
@@ -60,49 +53,37 @@ app.controller('RegisterController', ['$scope', '$http', '$location', function($
 }]);
 
 app.controller('ChooseController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
+    //Use for choose route\\
 }]);
 
 app.controller('SaveController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
     $scope.saveLeftover = function() {
         $http.post('/save', $scope.data).then(function(response) {
             console.log(response);
             $location.path('/choose');
         });
     };
-
 }]);
 
 app.controller('ShowController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
     function showLeftovers() {
         $http.get('/show').then(function(response) {
-            console.log('in show controller', response.data);
-
             $scope.leftovers = response.data;
             $scope.foodItem = response.data.foodItem;
             $scope.entryDate = response.data.entryDate;
             $location.path('/show');
-
         });
-
     }
     showLeftovers();
-
 
     $scope.toDelete = function(leftover) {
         console.log("testing delete function", leftover);
         $http.delete('/delete', $scope.data).then(function(response) {
-
         });
     };
-
 }]);
 
-
 app.controller('DeleteController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-
     $scope.toDelete = function() {
         console.log("testing the delete function");
     };
@@ -129,11 +110,3 @@ app.controller('DeleteController', ['$scope', '$http', '$location', function($sc
 //    };
 //    showLeftovers();
 //}]);
-
-
-
-
-//app.factory('CurrentUserService', ['$scope', function($scope) {
-//    var user = $scope.data.username;
-//
-//    console.log("in the factory", user);

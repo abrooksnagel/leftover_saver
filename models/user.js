@@ -1,23 +1,20 @@
 var mongoose = require('mongoose');
 
-
 var Schema = mongoose.Schema;
 var Leftover = require('./leftovers').schema;
-
 
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-
 var UserSchema = new Schema({
-        username: {type: String, required: true, index: {unique: true}},
-        password: {type: String, required: true},
-        contact: {
-            phoneNumber: {type: Number},
-            mobileProvider: {type: String},
-            email: {type: String}},
-        leftovers: [Leftover]
-        }, {minimize: false});
+    username: {type: String, required: true, index: {unique: true}},
+    password: {type: String, required: true},
+    contact: {
+        phoneNumber: {type: Number},
+        mobileProvider: {type: String},
+        email: {type: String}},
+    leftovers: [Leftover]
+}, {minimize: false});
 
 UserSchema.pre('save', function(next) {
     var user = this;
@@ -45,7 +42,6 @@ UserSchema.methods.comparePassword = function(submittedPassword, callBack) {
         callBack(null, isMatch);
     })
 };
-
 
 var User = mongoose.model('User', UserSchema);
 

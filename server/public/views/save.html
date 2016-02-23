@@ -3,13 +3,11 @@
         <h1>LEFTOVER</h1>
         <h2 class="rotate">Saver!</h2>
     </div>
-
-    <div class="save">
+    <div class="save floatRightSetMargin">
         <label for="foodItem">FOOD ITEM:</label>
         <input type="text" ng-model="data.leftover.foodItem" placeholder="FOOD ITEM">
         <label for="entryDate">PREPARED DATE (LEAVE BLANK TO DEFAULT TO NOW):</label>
         <input type="datetime-local" ng-model="data.leftover.entryDate" placeholder="MM-DD-YYYY HH:MM">
         <button ng-click="saveLeftover()">SUBMIT</button>
     </div>
-
 </div>

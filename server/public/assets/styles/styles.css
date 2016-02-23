@@ -1,71 +1,4 @@
-body {
-    background-image: url("../../images/IMG_5688.jpg");
-    background-size: 100%;
-}
-
-
-.jumbotron {
-    background-color: rgba(146, 160, 19, 0.75);
-    margin: 0;
-}
-
-
-.rotate {
-    transform: rotate(-15deg);
-    float: right;
-    margin-right: 48.5vw;
-}
-
-
-.logo h1 {
-    padding: 0 0 0 20px;
-    font-family: "Exo 2";
-    font-weight: 800;
-    display: inline;
-    /*font-size: 96px;*/
-    font-size: 7vw;
-}
-
-
-.logo h2 {
-    position: relative;
-    font-family: "Pacifico";
-    display: inline;
-    font-size: 4.3vw;
-
-
-
-}
-
-.login, .save, .choose {
-    float: right;
-    margin: 0 20px 0 0;
-
-}
-
-
-input {
-    background-color: rgba(179, 205, 35, 0.75);
-}
-
-
-.list, button  {
-    background-color: rgba(179, 205, 35, 0.75);
-    border: solid 1px #474747;
-}
-
-
-.well {
-    background-color: rgba(179, 205, 35, 0.75);
-    border: solid 1px #474747;
-}
-
-
-.delete {
-    float: right;
-}
-
-
+/*Clear fix*/
 .clearfix:after {
     visibility: hidden;
     display: block;
@@ -75,7 +8,63 @@ input {
     height: 0;
 }
 .clearfix { display: inline-block; }
-/* start commented backslash hack \*/
+
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
-/* close commented backslash hack */
+
+/*Element styling*/
+body {
+    background-image: url("../../images/IMG_5688.jpg");
+    background-size: 100%;
+}
+
+input {
+    background-color: rgba(179, 205, 35, 0.75);
+}
+
+/*Logo styling*/
+.logo h1 {
+    padding: 0 0 0 20px;
+    font-family: "Exo 2";
+    font-weight: 800;
+    display: inline;
+    font-size: 7vw;
+}
+
+.logo h2 {
+    position: relative;
+    font-family: "Pacifico";
+    display: inline;
+    font-size: 4.3vw;
+}
+
+.list, button  {
+    background-color: rgba(179, 205, 35, 0.75);
+    border: solid 1px #474747;
+}
+
+/*Class styling*/
+.floatRightSetMargin {
+    float: right;
+    margin: 0 20px 0 0;
+}
+
+.jumbotron {
+    background-color: rgba(146, 160, 19, 0.75);
+    margin: 0;
+}
+
+.rotate {
+    transform: rotate(-15deg);
+    float: right;
+    margin-right: 48.5vw;
+}
+
+.well {
+    background-color: rgba(179, 205, 35, 0.75);
+    border: solid 1px #474747;
+}
+
+.delete {
+    float: right;
+}

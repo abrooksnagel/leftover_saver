@@ -1,21 +1,19 @@
 /**
  * Created by abrooksnagel on 2/2/16.
  */
-//These bring in my required libraries
+ //Brings in my required libraries
 var express = require('express');
 var path = require('path');
 var passport = require('passport');
 
-
-
-
-//This establishes router as an express router to be used to create routes below
+  //Establishes router as an express router to be used to create routes below\\
 var router = express.Router();
 
+  //Requires my models\\
 var Leftover = require('../../models/leftovers');
 var User = require('../../models/user');
 
-//This creates the router used to serve the index.html
+  //Creates the routes\\
 router.get('/', function(request, response) {
     response.sendFile(path.join(__dirname, '../public/views/index.html'));
 });
@@ -33,7 +31,6 @@ router.post('/login', passport.authenticate('local', {
 }));
 
 router.post('/register', function(request, response){
-    console.log(request.body);
     User.create(request.body, function(err, user){
         if(err) {
             console.log('Error saving user', err);
@@ -45,8 +42,6 @@ router.post('/register', function(request, response){
 });
 
 router.post('/save', function(request, response) {
-    console.log("in save router", request.body);
-
     //Find user that was requested
     User.findById(request.user.id, function(err, user){
         if(err) {
@@ -72,23 +67,18 @@ router.post('/save', function(request, response) {
                         response.sendStatus(500);
                     }
                 });
-
                 response.sendStatus(200);
-
             });
         }
     });
 });
 
 router.get('/show', function(request, response) {
-    console.log("in show router", request.body);
-
     User.findById(request.user.id, function(err, user) {
         if(err) {
             console.log("error returning leftovers", err);
         } else {
             console.log("showing leftovers in show router", user.leftovers);
-            //response.send(JSON.stringify(user.leftovers));
             response.send(user.leftovers);
         }
     });
