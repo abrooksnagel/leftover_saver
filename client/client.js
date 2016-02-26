@@ -52,7 +52,7 @@ app.controller('RegisterController', ['$scope', '$http', '$location', function($
     };
 }]);
 
-app.controller('ChooseController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+app.controller('ChooseController', ['$scope', function($scope) {
     //Use for choose route\\
 }]);
 
@@ -78,23 +78,26 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
 
     $scope.toDelete = function(leftover) {
         console.log("testing delete function", leftover);
-        $http.delete('/delete', $scope.data).then(function(response) {
+        $http.delete('/delete', leftover).then(function(response) {
         });
     };
 }]);
 
-app.controller('DeleteController', ['$scope', '$http', '$location', function($scope, $http, $location) {
-    $scope.toDelete = function() {
-        console.log("testing the delete function");
-    };
-    //$scope.toDelete = function() {
-    //    $http.delete('/delete', $scope.data).then(function(response) {
-    //        console.log($scope.data);
-    //        console.log('in delete controller', response);
-    //    });
-    //};
-
-}]);
+  //(((((((((((((((((((((((((((()))))))))))))))))))))))))))\\
+  //right now delete functionality is in the show controller\\
+  //(((((((((((((((((((((((((((())))))))))))))))))))))))))))\\
+// app.controller('DeleteController', ['$scope', '$http', '$location', function($scope, $http, $location) {
+//     $scope.toDelete = function() {
+//         console.log("testing the delete function");
+//     };
+//     $scope.toDelete = function() {
+//        $http.delete('/delete', $scope.data).then(function(response) {
+//            console.log($scope.data);
+//            console.log('in delete controller', response);
+//        });
+//     };
+//
+// }]);
 
 //app.controller('ContactController', ['$scope', '$http', '$location', function($scope, $http, $location) {
 //

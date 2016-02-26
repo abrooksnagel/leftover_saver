@@ -9,7 +9,6 @@ var session = require('express-session');
 var passport = require('passport');
 var nodemailer = require('nodemailer');
 
-
 var localStrategy = require('passport-local').Strategy;
 
 //This requires the index router and mongoose models\\
@@ -20,9 +19,6 @@ var Leftover = require('../models/leftovers');
 
 //This creates an express app
 var app = express();
-
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
@@ -43,15 +39,11 @@ app.use(express.static('server/public'));
 app.use('/', index);
 //app.use('/contact', index); Do I need this????
 
-
-
     //))))))))))))))))))((((((((((((((((((\\
     //           Using mongoose           \\
     //))))))))))))))))))((((((((((((((((((\\
 var mongoURI = 'mongodb://localhost:27017/leftover_saver';
 var mongoDB = mongoose.connect(mongoURI).connection;
-
-
 
 mongoDB.on('error', function(err) {
     console.log('MongoDB error:', err);
@@ -118,12 +110,12 @@ var transporter = nodemailer.createTransport({
     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
     //This will run the findUser() function every six hours\\
     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-var testInt = setInterval(findUser, 60 * 60 * 1000);
+var testInt = setInterval(findUser, 60 * 1000);
 
     //))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
     //Attempting to find user information from the database\\
     //)))))))))))))))))))))))))((((((((((((((((((((((((((((\\
-var userContact;
+var userContact = {};
 var userLeftover;
 var userDateSaved;
 
@@ -151,10 +143,10 @@ function findUser() {
             console.log('showing items for contact', user[0].contact);
         }
         userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
-        userLeftover = user[0].leftovers[0].foodItem;
+        userLeftover = user[0].leftovers[4].foodItem;
         var options = { weekday: "long", year: "numeric", month: "short",
             day: "numeric" };
-        userDateSaved = user[0].leftovers[0].entryDate.toLocaleTimeString("en-US", options);
+        userDateSaved = user[0].leftovers[4].entryDate.toLocaleTimeString("en-US", options);
         console.log('inside findUsers function', userDateSaved);
     });
     var slowDownMessage = setTimeout(sendMessage, 1000);

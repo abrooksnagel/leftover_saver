@@ -1,7 +1,7 @@
 /**
  * Created by abrooksnagel on 2/2/16.
  */
- //Brings in my required libraries
+ //Brings in my required libraries\\
 var express = require('express');
 var path = require('path');
 var passport = require('passport');
@@ -85,79 +85,39 @@ router.get('/show', function(request, response) {
 });
 
 
-//router.delete('/delete', function(request, response) {
-//    console.log("in delete router", request);
-//
-//    Leftover.findById(request.leftovers.id, function(err, leftover) {
-//        if(err) {
-//            console.log('Error deleting leftover', err);
-//        } else {
-//            response.sendStatus(200);
-//
-//            Leftover.delete(request.body.leftover, function(err, leftover){
-//                console.log('Error saving leftover', err);
-//
-//
-//                //Associate with user
-//                user.leftovers.push(leftover);
-//
-//                //Save user (now with leftover)
-//                user.save(function(err){
-//                    if(err){
-//                        console.log('error saving user', err);
-//                        response.sendStatus(500);
-//                    }
-//                });
-//
-//                response.sendStatus(200);
-//
-//            });
-//        }
-//    });
-//
-//});
+router.delete('/delete', function(request, response) {
+   console.log("in delete router", request.query);
 
-//))))))))))))))))))))))))))))))))))!((((((((((((((((((((((((((((((((((\\
-//this will search my database for leftovers between 54 and 60 hours old \\
-//)))))))))))))))))))))))))))))))))))!(((((((((((((((((((((((((((((((((((((\\
+  //  Leftover.findById(request.leftovers.id, function(err, leftover) {
+  //      if(err) {
+  //          console.log('Error deleting leftover', err);
+  //      } else {
+  //          response.sendStatus(200);
+   //
+  //          Leftover.delete(request.body.leftover, function(err, leftover){
+  //              console.log('Error saving leftover', err);
+   //
+   //
+  //              //Associate with user
+  //              user.leftovers.push(leftover);
+   //
+  //              //Save user (now with leftover)
+  //              user.save(function(err){
+  //                  if(err){
+  //                      console.log('error saving user', err);
+  //                      response.sendStatus(500);
+  //                  }
+  //              });
+   //
+  //              response.sendStatus(200);
+   //
+  //          });
+  //      }
+   //});
 
-//router.get('/contact', function(request, response) {
-//    var contact = function() {
-//        //"contact.email": "test@test.com"//
-//        //User.find({"contact.email": "test@test.com"}, function (err, user) {
-//
-//        //User.find({leftovers : {$elemMatch: {entryDate : {$gte: '02-01-2016'}}}}, function (err, user) {
-//        ////User.find({"leftovers.entryDate" : { $gte: '02-01-2016' }}, function (err, user) {
-//        //    if (err) {
-//        //        console.log('error returning contact items', err);
-//        //    } else {
-//        //        response.send(user);
-//        //        console.log('showing items for contact', user);
-//        //    }
-//        //});
-//        Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
-//            if(err) {
-//                console.log('Error returning contact leftovers', err);
-//            } else {
-//                 //response.send(user);
-//
-//                console.log('showing items for contact', user);
-//                console.log('testing the interval');
-//            }
-//        });
-//    };
-//    //contact();
-//});
+});
 
-
-
-
-
-
-
-
-
-//This exports this router to be used by server.js
+//This exports this router to be used by server.js\\
 module.exports = router;/**
  * Created by abrooksnagel on 2/13/16.
  */
