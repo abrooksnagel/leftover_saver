@@ -110,7 +110,7 @@ var transporter = nodemailer.createTransport({
     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
     //This will run the findUser() function every six hours\\
     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-var testInt = setInterval(findUser, 60 * 1000);
+var testInt = setInterval(findUser, 6 * 60 * 60 * 1000);
 
     //))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
     //Attempting to find user information from the database\\
@@ -130,7 +130,7 @@ function findUser() {
     //))))))))))))))))))))))))))(((((((((((((((((((((((\\
     //         creating search parameters              \\
     //)))))))))))))))))))))))((((((((((((((((((((((((((\\
-    var startSearch = new Date(Date.now() - 60 * 60 * 60 * 1000);
+    var startSearch = new Date(Date.now() - 60 * 60 * 60 * 60 * 1000);
     var endSearch = new Date(Date.now() - 54 * 60 * 60 * 1000);
     console.log(startSearch);
     console.log(endSearch);
