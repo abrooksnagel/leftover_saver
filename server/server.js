@@ -47,8 +47,16 @@ app.get('/*', function(request, response){
     //))))))))))))))))))((((((((((((((((((\\
     //           Using mongoose           \\
     //))))))))))))))))))((((((((((((((((((\\
-var mongoURI = 'mongodb://localhost:27017/leftover_saver';
+// var mongoURI = 'mongodb://localhost:27017/leftover_saver';
+// var mongoDB = mongoose.connect(mongoURI).connection;
+
+    //((((((((((((((((((()))))))))))))))))))\\
+    //            Using mongolab            \\
+    //((((((((((((((((((()))))))))))))))))))\\
+
+var mongoURI = process.env.MONGOLAB_URI;
 var mongoDB = mongoose.connect(mongoURI).connection;
+
 
 mongoDB.on('error', function(err) {
     console.log('MongoDB error:', err);
@@ -191,7 +199,7 @@ var sendMessage = function() {
     //)))))))))))(((((((((((\\
     //This creates my server\\
     //)))))))))))(((((((((((\\
-var server = app.listen(3000, function() {
+var server = app.listen(process.env.PORT || 3000, function() {
     var port = server.address().port;
     console.log("Listening on port", port);
 });
