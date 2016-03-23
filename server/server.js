@@ -3,6 +3,7 @@
  */
 //These bring in my required libraries
 var express = require('express');
+var path = require('path');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var session = require('express-session');
@@ -37,6 +38,10 @@ app.use(passport.session());
 //This is telling server to use index router
 app.use(express.static('server/public'));
 app.use('/', index);
+app.get('/*', function(request, response){
+	response.sendFile(path.join(__dirname, '../server/public/views/index.html'));
+});
+
 //app.use('/contact', index); Do I need this????
 
     //))))))))))))))))))((((((((((((((((((\\
@@ -180,6 +185,8 @@ var sendMessage = function() {
     });
     console.log('Message sent', userContact);
 };
+
+
 
     //)))))))))))(((((((((((\\
     //This creates my server\\

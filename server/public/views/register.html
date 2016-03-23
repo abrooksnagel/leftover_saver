@@ -1,4 +1,4 @@
-<div class="jumbotron">
+<div class="jumbotron  row col-xs-8 col-sm-8 col-md-8 col-lg-12">
     <div class="logo">
         <h1>LEFTOVER</h1>
         <h2 class="rotate">Saver!</h2>
@@ -12,6 +12,7 @@
         <input type="email" ng-model="data.contact.email" ng-required="!(data.contact.email || data.contact.number)" placeholder="EMAIL">
         <label for="mobile provider">MOBILE PROVIDER:</label>
         <select ng-model="data.contact.mobileProvider">
+            <option value="" default selected>MOBILE PROVIDER</option>
             <option value="@txt.att.net">AT&T</option>
             <option value="@tmomail.net">T-MOBILE</option>
             <option value="@vtext.com">VERIZON</option>

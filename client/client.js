@@ -6,6 +6,10 @@ app.config(['$routeProvider', '$locationProvider', function($routeProvider, $loc
             templateUrl: 'views/login.html',
             controller: 'LoginController'
         })
+        .when('/agree', {
+            templateUrl: 'views/agree.html',
+            controller: 'AgreeController'
+        })
         .when('/register', {
             templateUrl: 'views/register.html',
             controller: 'RegisterController'
@@ -43,6 +47,10 @@ app.controller('LoginController', ['$scope', '$http', '$location', function($sco
     };
 }]);
 
+app.controller('AgreeController', ['$scope', function($scope) {
+    //Use for agree route\\
+}]);
+
 app.controller('RegisterController', ['$scope', '$http', '$location', function($scope, $http, $location) {
     $scope.submitContact = function() {
         $http.post('/register', $scope.data).then(function(response){
@@ -76,11 +84,22 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
     }
     showLeftovers();
 
-    $scope.toDelete = function(leftover) {
-        console.log("testing delete function", leftover);
-        $http.delete('/delete', leftover).then(function(response) {
+    //Delete Gig
+    $scope.toDelete = function(leftover){
+        console.log('This is the leftover id', leftover);
+        // //The following line works with my basic delete code
+        $http.delete('/delete/' + leftover._id).then(function(response) {
+
+          $location.path('/choose');
         });
     };
+
+    // $scope.toDelete = function(leftover) {
+    //     console.log("testing delete function", leftover);
+    //     $http.delete('/delete', leftover._id).then(function(response) {
+    //       $location.path('/show');
+    //     });
+    // };
 }]);
 
   //(((((((((((((((((((((((((((()))))))))))))))))))))))))))\\

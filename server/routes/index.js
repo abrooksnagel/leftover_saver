@@ -45,17 +45,14 @@ router.post('/save', function(request, response) {
     //Find user that was requested
     User.findById(request.user.id, function(err, user){
         if(err) {
-            console.log('Error saving leftover', err);
+            console.log('Error saving user leftover', err);
         } else {
 
             //found user
-
             //create leftover with request.body.leftover
-
             //Create leftover from data send by client
             Leftover.create(request.body.leftover, function(err, leftover){
                 console.log('Error saving leftover', err);
-
 
                 //Associate with user
                 user.leftovers.push(leftover);
@@ -78,44 +75,73 @@ router.get('/show', function(request, response) {
         if(err) {
             console.log("error returning leftovers", err);
         } else {
-            console.log("showing leftovers in show router", user.leftovers);
+            //console.log("showing leftovers in show router", user.leftovers);
             response.send(user.leftovers);
         }
     });
 });
 
 
-router.delete('/delete', function(request, response) {
-   console.log("in delete router", request.query);
+//Another attempt at deleting\\
+// router.post('/delete', function(request, response) {
+//     //Find user that was requested
+//     User.findById(request.user.id, function(err, user){
+//       console.log("user in delete route", request.user.id);
+//         if(err) {
+//             console.log('Error saving user leftover', err);
+//         } else {
+//
+//             //found user
+//             //create leftover with request.body.leftover
+//             //Create leftover from data send by client
+//             Leftover.remove(request.query.leftover, function(err, leftover){
+//                 console.log('Error saving leftover', err);
+//                 console.log('Deleted', leftover);
+//
+//                 //Associate with user
+//                 user.leftovers.push(leftover);
+//
+//                 //Save user (now with leftover)
+//                 user.save(function(err){
+//                     if(err){
+//                         console.log('error saving user', err);
+//                         response.sendStatus(500);
+//                     }
+//                 });
+//                 response.sendStatus(200);
+//             });
+//         }
+//     });
+// });
 
-  //  Leftover.findById(request.leftovers.id, function(err, leftover) {
-  //      if(err) {
-  //          console.log('Error deleting leftover', err);
-  //      } else {
-  //          response.sendStatus(200);
-   //
-  //          Leftover.delete(request.body.leftover, function(err, leftover){
-  //              console.log('Error saving leftover', err);
-   //
-   //
-  //              //Associate with user
-  //              user.leftovers.push(leftover);
-   //
-  //              //Save user (now with leftover)
-  //              user.save(function(err){
-  //                  if(err){
-  //                      console.log('error saving user', err);
-  //                      response.sendStatus(500);
-  //                  }
-  //              });
-   //
-  //              response.sendStatus(200);
-   //
-  //          });
-  //      }
-   //});
 
+// //((((((((((((((((((()))))))))))))))))))\\
+// //My idea based on Altamir's delete call\\
+// // This works but doesn't update user   \\
+//
+//   //Delete Selected Leftover
+router.delete('/delete/:id', function(request, response, next){
+    response.send('/choose');
+    console.log("The id of the selected leftover",request.params.id);
+    Leftover.find({_id: request.params.id}).remove().exec();
+
+    User.findById(request.user.id, function(err, user){
+      console.log("user in delete route", user);
+
+        user.leftovers.pull({_id: request.params.id});
+        //user.leftovers.pop({_id: request.params.id});
+        user.save();
+    });
 });
+
+
+
+//Joel's suggestion\\
+// router.delete('/delete', function(request, response) {
+//   console.log("in delete router", request.query);
+// });
+
+
 
 //This exports this router to be used by server.js\\
 module.exports = router;/**

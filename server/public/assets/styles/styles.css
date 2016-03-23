@@ -18,10 +18,6 @@ body {
     background-size: 100%;
 }
 
-input {
-    background-color: rgba(179, 205, 35, 0.75);
-}
-
 /*Logo styling*/
 .logo h1 {
     padding: 0 0 0 20px;
@@ -52,6 +48,7 @@ input {
 .jumbotron {
     background-color: rgba(146, 160, 19, 0.75);
     margin: 0;
+    height: 70%;
 }
 
 .rotate {
@@ -67,4 +64,30 @@ input {
 
 .delete {
     float: right;
+}
+
+a {
+  color: black;
+}
+
+select {
+    border-top: 1px solid #474747;
+    border-left: 3px solid #ccc;
+    border-bottom: 3px solid #ccc;
+    border-right: 3px solid #ccc;
+    border-radius: 0;
+    -webkit-appearance: none;
+    vertical-align:top;
+    height:24px;
+}
+
+input, select{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  background-color: rgba(179, 205, 35, 0.75);
+}
+
+.lightgray {
+  color: lightgray;
 }
