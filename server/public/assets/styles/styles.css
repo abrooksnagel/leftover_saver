@@ -14,7 +14,8 @@
 
 /*Element styling*/
 body {
-    background-image: url("../../images/IMG_5688.jpg");
+    background-image: url("public/images/IMG_5688.jpg");
+    /*background-image: url("../../images/IMG_5688.jpg");*/
     background-size: 100%;
 }
 
