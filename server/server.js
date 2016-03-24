@@ -50,9 +50,9 @@ app.get('/*', function(request, response){
 // var mongoURI = 'mongodb://localhost:27017/leftover_saver';
 // var mongoDB = mongoose.connect(mongoURI).connection;
 
-    //((((((((((((((((((()))))))))))))))))))\\
-    //            Using mongolab            \\
-    //((((((((((((((((((()))))))))))))))))))\\
+    //(((((((((((((((((()))))))))))))))))))\\
+    //           Using mongolab            \\
+    //(((((((((((((((((()))))))))))))))))))\\
 
 var mongoURI = process.env.MONGOLAB_URI;
 var mongoDB = mongoose.connect(mongoURI).connection;
