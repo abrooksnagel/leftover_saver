@@ -120,69 +120,49 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-    //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-    //This will run the findUser() function every six hours\\
-    //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
-var testInt = setInterval(findUser, 6 * 60 * 60 * 1000);
-
-    //))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
-    //Attempting to find user information from the database\\
-    //)))))))))))))))))))))))))((((((((((((((((((((((((((((\\
-var userContact = {};
-var userLeftover;
-var userDateSaved;
-
-function findUser() {
-    //)))))))))))))))))))))))))))))))))))))((((((((((((((((((((((((((((\\
-    // These are some alternative search parameters I used for testing   \\
-    //           "contact.email": "test@test.com"                          \\
-    // User.find({"contact.email": "test@test.com"}, function (err, user) {  \\
-    //)))))))))))))))))))))))))))((((((((((((((((((((((((((((((((((((((((((((((\\
-
-
-    //))))))))))))))))))))))))))(((((((((((((((((((((((\\
-    //         creating search parameters              \\
-    //)))))))))))))))))))))))((((((((((((((((((((((((((\\
-    var startSearch = new Date(Date.now() - 60 * 60 * 60 * 60 * 1000);
-    var endSearch = new Date(Date.now() - 54 * 60 * 60 * 1000);
-    console.log(startSearch);
-    console.log(endSearch);
-
-    User.find({leftovers : {$elemMatch: {entryDate : { $gte: startSearch, $lt: endSearch }}}}, function (err, user) {
-        if (err) {
-            console.log('error returning contact items', err);
-        } else {
-            //response.send(user);
-            console.log('showing items for contact', user[0].contact);
-        }
-        userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
-        userLeftover = user[0].leftovers[4].foodItem;
-        var options = { weekday: "long", year: "numeric", month: "short",
-            day: "numeric" };
-        userDateSaved = user[0].leftovers[4].entryDate.toLocaleTimeString("en-US", options);
-        console.log('inside findUsers function', userDateSaved);
-    });
-    var slowDownMessage = setTimeout(sendMessage, 1000);
-};
-
-
-    //))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
-    //  Another attempt at find user information in the database  \\
-    //))))))))))))))))))))))))))))))((((((((((((((((((((((((((((((\\
-        //Leftover.find({entryDate : {$gte: '02-01-2016'}}, function (err, user) {
-        //    if(err) {
-        //        console.log('Error returning contact leftovers', err);
-        //    } else {
-        //        //response.send(user);
-        //
-        //        console.log('showing items for contact', user);
-        //        console.log('testing the interval');
-        //    }
-        //});
+//     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
+//     //This will run the findUser() function every six hours\\
+//     //this will be used for the email/text reminder feature\\
+//     //))))))))))))))))))))))))))(((((((((((((((((((((((((((\\
+// var testInt = setInterval(findUser, 6 * 60 * 60 * 1000);
+//
+//     //))))))))))))))))))))))))(((((((((((((((((((((((((((((\\
+//     //Attempting to find user information from the database\\
+//     //)))))))))))))))))))))))))((((((((((((((((((((((((((((\\
+// var userContact = {};
+// var userLeftover;
+// var userDateSaved;
+//
+// function findUser() {
+//
+//     //))))))))))))))))))))))))))(((((((((((((((((((((((\\
+//     //         creating search parameters -            \\
+//     //)))))))))))))))))))))))((((((((((((((((((((((((((\\
+//     var startSearch = new Date(Date.now() - 60 * 60 * 60 * 60 * 1000);
+//     var endSearch = new Date(Date.now() - 54 * 60 * 60 * 1000);
+//     console.log(startSearch);
+//     console.log(endSearch);
+//
+//     User.find({leftovers : {$elemMatch: {entryDate : { $gte: startSearch, $lt: endSearch }}}}, function (err, user) {
+//         if (err) {
+//             console.log('error returning contact items', err);
+//         } else {
+//             //response.send(user);
+//             console.log('showing items for contact', user[0].contact);
+//         }
+//         userContact = user[0].contact.phoneNumber + user[0].contact.mobileProvider;
+//         userLeftover = user[0].leftovers[4].foodItem;
+//         var options = { weekday: "long", year: "numeric", month: "short",
+//             day: "numeric" };
+//         userDateSaved = user[0].leftovers[4].entryDate.toLocaleTimeString("en-US", options);
+//         console.log('inside findUsers function', userDateSaved);
+//     });
+//     var slowDownMessage = setTimeout(sendMessage, 1000);
+// };
 
     //)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
     //                  Using nodemailer                       \\
-    // This will text or email users that 60 hours have passed \\
+    // This will text or email users that 54-60 hours have passed \\
     //)))))))))))))))))))))))))))))!(((((((((((((((((((((((((((\\
 var sendMessage = function() {
     transporter.sendMail({
@@ -193,8 +173,6 @@ var sendMessage = function() {
     });
     console.log('Message sent', userContact);
 };
-
-
 
     //)))))))))))(((((((((((\\
     //This creates my server\\
