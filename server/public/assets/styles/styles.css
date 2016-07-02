@@ -17,11 +17,18 @@ body {
     background-image: url("../../images/IMG_5688.JPG");
     background-size: 100%;
 }
-
+@font-face {
+  font-family: 'Exo 2', Extra-Bold;
+  src: url(https://fonts.googleapis.com/css?family=Exo+2:800);
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url(https://fonts.googleapis.com/css?family=Pacifico);
+}
 /*Logo styling*/
 .logo h1 {
     padding: 0 0 0 20px;
-    font-family: "Exo 2";
+    font-family: "Exo 2", Extra-Bold;
     font-weight: 800;
     display: inline;
     font-size: 7vw;

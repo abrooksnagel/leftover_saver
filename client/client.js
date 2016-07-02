@@ -84,7 +84,7 @@ app.controller('ShowController', ['$scope', '$http', '$location', function($scop
     }
     showLeftovers();
 
-    //Delete Gig
+    //Delete Item
     $scope.toDelete = function(leftover){
         console.log('This is the leftover id', leftover);
         // //The following line works with my basic delete code
